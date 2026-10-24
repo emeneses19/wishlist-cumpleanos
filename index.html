@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist de Cumpleaños ♡</title>
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="content-all">
+        <main class="contenedor-principal">
+
+
+            <!-- PANTALLA 1: BIENVENIDA Y CÓDIGO DE ACCESO -->
+            <section id="pantalla-bienvenida" class="pantalla activa">
+                <div class="tarjeta-bienvenida">
+                    <div class="badge-corazon">
+                        <h2> ♡ Una pequeña wishlist para ti</h2>
+                    </div>
+
+                    <p>Hola!, introduce tu código personal para comenzar.</p>
+
+                    <form id="form-acceso" class="form-acceso">
+                        <div class="grupo-input">
+                            <label for="codigo-acceso">Código de acceso</label>
+                            <input type="password" id="codigo-acceso" placeholder="Ej. AMIGA2026" autocomplete="off"
+                                required>
+                            <span id="error-codigo" class="mensaje-error"></span>
+                        </div>
+                        <button type="submit" class="btn-principal" id="btn-comenzar">
+                            <span>Comenzar</span>
+                            <span class="icono-btn">→</span>
+                        </button>
+                    </form>
+                    <!-- <div id="aviso-desarrollo" class="aviso-dev">
+                        <span>⚠️ Modo desarrollo: Si no configuras la URL de Apps Script, el formulario simulará el
+                            guardado
+                            localmente.</span>
+                    </div> -->
+                </div>
+            </section>
+
+            <!-- PANTALLA 2: FORMULARIO MULTIPASO -->
+            <section id="pantalla-encuesta" class="pantalla oculta">
+                <div class="tarjeta-encuesta">
+
+                    <!-- Encabezado y Progreso -->
+                    <header class="header-encuesta">
+                        <div class="progreso-info">
+                            <span id="texto-paso">Paso 1 de 5</span>
+                            <span id="saludo-personalizado">¡Hola! ♡</span>
+                        </div>
+                        <div class="barra-progreso-container">
+                            <div id="barra-progreso" class="barra-progreso"></div>
+                        </div>
+                    </header>
+
+                    <!-- Contenedor de Pasos -->
+                    <form id="form-wishlist">
+
+                        <!-- PASO 1 -->
+                        <div class="paso-contenido activo" data-paso="1">
+                            <div class="paso-header">
+                                <span class="emoji-paso">🌷</span>
+                                <h2>Sobre ti</h2>
+                                <p>Empezamos por lo más importante: ¡tú!</p>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label for="nombre-completo">Nombre completo y apellidos <span
+                                        class="obligatorio">*</span></label>
+                                <input type="text" id="nombre-completo" placeholder="Tu nombre completo" required>
+                                <span class="mensaje-error" data-error="nombreCompleto"></span>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label for="fecha-cumpleanios">¿Cuándo es tu cumpleaños? <span
+                                        class="obligatorio">*</span></label>
+                                <input type="date" id="fecha-cumpleanios" required>
+                                <span class="mensaje-error" data-error="fechaCumpleanios"></span>
+                            </div>
+                        </div>
+
+                        <!-- PASO 2 -->
+                        <div class="paso-contenido oculta" data-paso="2">
+                            <div class="paso-header">
+                                <span class="emoji-paso">🎁</span>
+                                <h2>Tus regalos favoritos</h2>
+                                <p>¿Qué tipos de regalos te hacen más ilusión? Selecciona uno o varios.</p>
+                            </div>
+
+                            <div class="cuadricula-tarjetas" id="grid-categorias">
+                                <!-- Las tarjetas se generan dinámicamente o se estructuran por HTML -->
+                                <label class="tarjeta-seleccionable" data-valor="Libros">
+                                    <input type="checkbox" name="categorias" value="Libros">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">📚</span>
+                                        <span class="titulo-tarjeta">Libros</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Flores">
+                                    <input type="checkbox" name="categorias" value="Flores">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">💐</span>
+                                        <span class="titulo-tarjeta">Flores</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Accesorios">
+                                    <input type="checkbox" name="categorias" value="Accesorios">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">💍</span>
+                                        <span class="titulo-tarjeta">Accesorios</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Ropa">
+                                    <input type="checkbox" name="categorias" value="Ropa">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">👗</span>
+                                        <span class="titulo-tarjeta">Ropa</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Papelería">
+                                    <input type="checkbox" name="categorias" value="Papelería">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">✒️</span>
+                                        <span class="titulo-tarjeta">Papelería</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Experiencias">
+                                    <input type="checkbox" name="categorias" value="Experiencias">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">🎟️</span>
+                                        <span class="titulo-tarjeta">Experiencias</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Tecnología">
+                                    <input type="checkbox" name="categorias" value="Tecnología">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">🎧</span>
+                                        <span class="titulo-tarjeta">Tecnología</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Decoración">
+                                    <input type="checkbox" name="categorias" value="Decoración">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">🕯️</span>
+                                        <span class="titulo-tarjeta">Decoración</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Regalos hechos a mano">
+                                    <input type="checkbox" name="categorias" value="Regalos hechos a mano">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">🧶</span>
+                                        <span class="titulo-tarjeta">Hechos a mano</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                                <label class="tarjeta-seleccionable" data-valor="Otros">
+                                    <input type="checkbox" name="categorias" value="Otros">
+                                    <div class="contenido-tarjeta">
+                                        <span class="icono-tarjeta">✨</span>
+                                        <span class="titulo-tarjeta">Otros</span>
+                                        <span class="check-icono">✓</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <span class="mensaje-error" data-error="categorias"></span>
+                        </div>
+
+                        <!-- PASO 3 -->
+                        <div class="paso-contenido oculta" data-paso="3">
+                            <div class="paso-header">
+                                <span class="emoji-paso">🌸</span>
+                                <h2>Cuéntame tus gustos</h2>
+                                <p>Detalles personalizados según lo que elegiste.</p>
+                            </div>
+
+                            <!-- Bloque Condicional: Libros -->
+                            <div id="seccion-libros" class="bloque-condicional oculta">
+                                <h3>📚 ¿Qué géneros de libros te gustan?</h3>
+                                <div class="grid-chips" id="grid-generos-libros">
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Romance"> Romance</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Fantasía"> Fantasía</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Misterio y suspenso"> Misterio y suspenso</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Filosofía"> Filosofía</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Desarrollo personal"> Desarrollo personal</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Ciencia ficción"> Ciencia ficción</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Historia"> Historia</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Poesía"> Poesía</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Manga y cómics"> Manga y cómics</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="generosLibros"
+                                            value="Otros géneros"> Otros géneros</label>
+                                </div>
+                            </div>
+
+                            <!-- Bloque Condicional: Flores -->
+                            <div id="seccion-flores" class="bloque-condicional oculta">
+                                <h3>💐 ¿Te gustan las flores?</h3>
+                                <div class="grupo-botones-radio" id="grupo-gusta-flores">
+                                    <label class="btn-radio"><input type="radio" name="leGustanFlores"
+                                            value="Sí, ¡me encantan!"> Sí, ¡me encantan!</label>
+                                    <label class="btn-radio"><input type="radio" name="leGustanFlores"
+                                            value="Depende de la ocasión"> Depende de la ocasión</label>
+                                    <label class="btn-radio"><input type="radio" name="leGustanFlores" value="No mucho">
+                                        No
+                                        mucho</label>
+                                </div>
+
+                                <div id="subseccion-tipos-flores" class="oculta sub-bloque">
+                                    <h4>🌷 ¿Qué flores te gustan más?</h4>
+                                    <div class="cuadricula-tarjetas mini" id="grid-tipos-flores">
+                                        <label class="tarjeta-seleccionable mini" data-valor="Rosas">
+                                            <input type="checkbox" name="tiposFlores" value="Rosas">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">🌹</span>
+                                                <span class="titulo-tarjeta">Rosas</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Margaritas">
+                                            <input type="checkbox" name="tiposFlores" value="Margaritas">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">🌼</span>
+                                                <span class="titulo-tarjeta">Margaritas</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Girasoles">
+                                            <input type="checkbox" name="tiposFlores" value="Girasoles">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">🌻</span>
+                                                <span class="titulo-tarjeta">Girasoles</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Tulipanes">
+                                            <input type="checkbox" name="tiposFlores" value="Tulipanes">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">🌷</span>
+                                                <span class="titulo-tarjeta">Tulipanes</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Claveles">
+                                            <input type="checkbox" name="tiposFlores" value="Claveles">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">🌺</span>
+                                                <span class="titulo-tarjeta">Claveles</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Lirios">
+                                            <input type="checkbox" name="tiposFlores" value="Lirios">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">💮</span>
+                                                <span class="titulo-tarjeta">Lirios</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Flores variadas">
+                                            <input type="checkbox" name="tiposFlores" value="Flores variadas">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">💐</span>
+                                                <span class="titulo-tarjeta">Variadas</span>
+                                            </div>
+                                        </label>
+                                        <label class="tarjeta-seleccionable mini" data-valor="Otras flores">
+                                            <input type="checkbox" name="tiposFlores" value="Otras flores">
+                                            <div class="contenido-tarjeta mini">
+                                                <span class="icono-tarjeta">✨</span>
+                                                <span class="titulo-tarjeta">Otras</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mensaje si no hay preguntas condicionales activas -->
+                            <div id="sin-condicionales" class="mensaje-informativo oculta">
+                                <p>✨ Has seleccionado categorías generales. No se requieren preguntas adicionales en
+                                    este
+                                    paso. ¡Puedes continuar al siguiente!</p>
+                            </div>
+                        </div>
+
+                        <!-- PASO 4 -->
+                        <div class="paso-contenido oculta" data-paso="4">
+                            <div class="paso-header">
+                                <span class="emoji-paso">✨</span>
+                                <h2>Colores y cosas que disfrutas</h2>
+                                <p>Cuéntame más sobre tu estilo y tus pasatiempos.</p>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label>¿Cuál es tu color favorito? <span class="obligatorio">*</span></label>
+                                <div class="grid-colores" id="grid-colores">
+                                    <label class="circulo-color" style="background-color: #F8DDE5;" title="Rosa"><input
+                                            type="radio" name="colorFavorito" value="Rosa"><span>Rosa</span></label>
+                                    <label class="circulo-color" style="background-color: #E9E1F5;" title="Lila"><input
+                                            type="radio" name="colorFavorito" value="Lila"><span>Lila</span></label>
+                                    <label class="circulo-color" style="background-color: #D3E4FD;" title="Azul"><input
+                                            type="radio" name="colorFavorito" value="Azul"><span>Azul</span></label>
+                                    <label class="circulo-color" style="background-color: #D1E7DD;" title="Verde"><input
+                                            type="radio" name="colorFavorito" value="Verde"><span>Verde</span></label>
+                                    <label class="circulo-color" style="background-color: #F8D7DA;" title="Rojo"><input
+                                            type="radio" name="colorFavorito" value="Rojo"><span>Rojo</span></label>
+                                    <label class="circulo-color" style="background-color: #343A40; color: #fff;"
+                                        title="Negro"><input type="radio" name="colorFavorito"
+                                            value="Negro"><span>Negro</span></label>
+                                    <label class="circulo-color"
+                                        style="background-color: #F8F9FA; border: 1px solid #ccc;" title="Blanco"><input
+                                            type="radio" name="colorFavorito" value="Blanco"><span>Blanco</span></label>
+                                    <label class="circulo-color" style="background-color: #FFF3CD;"
+                                        title="Amarillo"><input type="radio" name="colorFavorito"
+                                            value="Amarillo"><span>Amarillo</span></label>
+                                    <label class="circulo-color" style="background-color: #FFE5D0;"
+                                        title="Naranja"><input type="radio" name="colorFavorito"
+                                            value="Naranja"><span>Naranja</span></label>
+                                    <label class="circulo-color" style="background-color: #E2D9D2;"
+                                        title="Marrón"><input type="radio" name="colorFavorito"
+                                            value="Marrón"><span>Marrón</span></label>
+                                    <label class="circulo-color"
+                                        style="background-color: #FFF; border: 1px dashed #874C62;" title="Otros"><input
+                                            type="radio" name="colorFavorito" value="Otros"><span>Otros</span></label>
+                                </div>
+                                <input type="text" id="color-otro-input" class="oculta input-adicional"
+                                    placeholder="Especifica tu color favorito">
+                                <span class="mensaje-error" data-error="colorFavorito"></span>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label>¿Qué cosas disfrutas hacer en tu tiempo libre?</label>
+                                <div class="grid-chips" id="grid-hobbies">
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Leer">
+                                        Leer</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Escuchar música"> Escuchar música</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Ver películas o series"> Ver películas o series</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Dibujar o pintar"> Dibujar o pintar</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Cocinar o preparar postres"> Cocinar o preparar postres</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Viajar">
+                                        Viajar</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Pasear">
+                                        Pasear</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Hacer manualidades"> Hacer manualidades</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Practicar deportes"> Practicar deportes</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Aprender cosas nuevas"> Aprender cosas nuevas</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Compartir tiempo con amigos"> Compartir tiempo con amigos</label>
+                                    <label class="chip-seleccionable"><input type="checkbox" name="hobbies"
+                                            value="Otros hobbies"> Otros hobbies</label>
+                                </div>
+                                <input type="text" id="hobbies-otro-input" class="oculta input-adicional"
+                                    placeholder="Especifica otros hobbies">
+                            </div>
+
+                            <div class="grupo-input">
+                                <label for="otros-gustos">¿Hay algún otro gusto o detalle que debería conocer para
+                                    elegir tu
+                                    regalo ideal?</label>
+                                <textarea id="otros-gustos" rows="3"
+                                    placeholder="Ej. Aromas favoritos, marcas, estilos, colecciones..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- PASO 5 -->
+                        <div class="paso-contenido oculta" data-paso="5">
+                            <div class="paso-header">
+                                <span class="emoji-paso">💗</span>
+                                <h2>Un cumpleaños especial</h2>
+                                <p>Casi terminamos. Solo unos últimos detalles para planear lo mejor.</p>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label for="no-te-gusta">¿Hay algo que definitivamente no te gustaría recibir como
+                                    regalo?</label>
+                                <textarea id="no-te-gusta" rows="3"
+                                    placeholder="Por ejemplo, algo que no utilizas, un aroma que no te gusta o cualquier cosa que prefieras evitar."></textarea>
+                            </div>
+
+                            <div class="grupo-input">
+                                <label for="cumpleanios-ideal">¿Cómo sería tu cumpleaños ideal?</label>
+                                <textarea id="cumpleanios-ideal" rows="3"
+                                    placeholder="Puede ser una reunión tranquila, una salida, una aventura, pasar tiempo con personas especiales o cualquier plan que te haga feliz."></textarea>
+                            </div>
+
+                            <!-- Resumen Visual -->
+                            <div class="resumen-contenedor">
+                                <h3>✨ Resumen de tu wishlist</h3>
+                                <div id="contenido-resumen" class="contenido-resumen">
+                                    <!-- Se llena mediante JavaScript -->
+                                </div>
+                            </div>
+
+                            <p class="frase-final">¡Ya casi! Tu wishlist me ayudará a preparar algo pensado
+                                especialmente
+                                para ti. ♡</p>
+                        </div>
+
+                        <!-- Navegación entre pasos -->
+                        <div class="navegacion-botones">
+                            <button type="button" id="btn-anterior" class="btn secundario oculta">Anterior</button>
+                            <button type="button" id="btn-continuar" class="btn principal">Continuar</button>
+                            <button type="submit" id="btn-guardar" class="btn principal oculta">Guardar mi
+                                wishlist</button>
+                        </div>
+
+                    </form>
+                </div>
+            </section>
+
+            <!-- PANTALLA 3: ÉXITO -->
+            <section id="pantalla-exito" class="pantalla oculta">
+                <div class="tarjeta-exito">
+                    <div class="icono-exito">🎉</div>
+                    <h2>¡Wishlist completada! ♡</h2>
+                    <p id="mensaje-exito-personalizado">Gracias por compartir tus gustos conmigo. Ahora tengo más pistas
+                        para hacer de tu cumpleaños un momento especial.</p>
+                    <div class="corazones-exito">✨ 💐 🎀 ♡</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="decoracion-fondo">
+        <div class="flor flor-1">🌸</div>
+        <div class="corazon corazon-1">♡</div>
+        <div class="flor flor-2">🌷</div>
+        <div class="corazon corazon-2">✨</div>
+    </div>
+
+
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+
+</html>

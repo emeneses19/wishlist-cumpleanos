@@ -1,0 +1,695 @@
+/* Variables de Colores y Estilos */
+:root {
+    --rosa-pastel: #F8DDE5;
+    --rosa-empolvado: #E8A8B8;
+    --crema: #FFF9F5;
+    --lavanda-suave: #E9E1F5;
+    --vino: #874C62;
+    --vino-hover: #6e3d50;
+    --texto-oscuro: #39313A;
+    --blanco: #FFFFFF;
+    --gris-borde: #E2D9D2;
+    --sombra-suave: 0 12px 35px rgba(135, 76, 98, 0.1);
+    --sombra-tarjeta: 0 6px 18px rgba(135, 76, 98, 0.06);
+    --sombra-hover: 0 10px 25px rgba(135, 76, 98, 0.15);
+    --transicion: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--crema);
+
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--texto-oscuro);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Selección de texto personalizada acorde al estilo */
+::selection {
+    background-color: var(--rosa-pastel);
+    color: var(--vino);
+}
+
+/* Tipografías */
+h1,
+h2,
+h3,
+h4,
+.badge-corazon {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Decoraciones de fondo flotantes */
+.decoracion-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.flor,
+.corazon {
+    position: absolute;
+    font-size: 1.8rem;
+    opacity: 0.45;
+    animation: flotar 6s ease-in-out infinite alternate;
+}
+
+.flor-1 {
+    top: 10%;
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.corazon-1 {
+    top: 15%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+.flor-2 {
+    bottom: 12%;
+    left: 12%;
+    animation-delay: 3s;
+}
+
+.corazon-2 {
+    bottom: 18%;
+    right: 8%;
+    animation-delay: 4.5s;
+}
+
+@keyframes flotar {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-18px) rotate(8deg);
+    }
+}
+
+/* Contenedor Principal */
+.contenedor-principal {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 680px;
+}
+
+.pantalla {
+    display: none;
+    animation: aparecer 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pantalla.activa {
+    display: block;
+}
+
+.oculta {
+    display: none !important;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Tarjetas con toque Glassmorphism suave y elegante */
+.tarjeta-bienvenida,
+.tarjeta-encuesta,
+.tarjeta-exito {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 28px;
+    padding: 40px;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid rgba(248, 221, 229, 0.6);
+}
+
+.tarjeta-bienvenida {
+    text-align: center;
+}
+
+.badge-corazon {
+    display: inline-block;
+    background-color: var(--rosa-pastel);
+    color: var(--vino);
+    padding: 6px 18px;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(232, 168, 184, 0.4);
+}
+
+.tarjeta-bienvenida h1 {
+    font-size: 2.4rem;
+    color: var(--vino);
+    margin-bottom: 12px;
+}
+
+.tarjeta-bienvenida p {
+    font-size: 1rem;
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Formularios e Inputs */
+.form-acceso {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.grupo-input {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.grupo-input label {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--texto-oscuro);
+}
+
+.obligatorio {
+    color: var(--vino);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1.5px solid var(--gris-borde);
+    background-color: var(--crema);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--texto-oscuro);
+    transition: var(--transicion);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--vino);
+    background-color: var(--blanco);
+    box-shadow: 0 0 0 4px var(--rosa-pastel);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Botones Principales con efecto tierno y elevado */
+.btn-principal,
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--vino);
+    color: var(--blanco);
+    border: none;
+    border-radius: 14px;
+    padding: 14px 28px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicion);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(135, 76, 98, 0.2);
+}
+
+.btn-principal:hover,
+.btn.principal:hover {
+    background-color: var(--vino-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+}
+
+/* Avisos y Errores */
+.aviso-dev {
+    margin-top: 25px;
+    padding: 12px;
+    background-color: rgba(255, 248, 231, 0.8);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #8A6D3B;
+    border: 1px solid #FFEBAA;
+}
+
+.mensaje-error {
+    display: block;
+    color: #C94A4A;
+    font-size: 0.82rem;
+    margin-top: 6px;
+}
+
+/* Header Encuesta & Progreso */
+.header-encuesta {
+    margin-bottom: 30px;
+}
+
+.progreso-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--vino);
+    margin-bottom: 10px;
+}
+
+.barra-progreso-container {
+    width: 100%;
+    height: 8px;
+    background-color: var(--rosa-pastel);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barra-progreso {
+    width: 20%;
+    height: 100%;
+    background-color: var(--vino);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paso-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.emoji-paso {
+    font-size: 2.2rem;
+    display: inline-block;
+    margin-bottom: 8px;
+    animation: latido 2s infinite ease-in-out;
+}
+
+@keyframes latido {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+.paso-header h2 {
+    font-size: 1.8rem;
+    color: var(--vino);
+    margin-bottom: 6px;
+}
+
+.paso-header p {
+    font-size: 0.95rem;
+    color: #6B5E67;
+}
+
+/* Cuadrículas de Tarjetas Seleccionables */
+.cuadricula-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 550px) {
+    .cuadricula-tarjetas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tarjeta-seleccionable {
+    cursor: pointer;
+    position: relative;
+}
+
+.tarjeta-seleccionable input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.contenido-tarjeta {
+    background-color: var(--crema);
+    border: 2px solid var(--gris-borde);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: var(--transicion);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.icono-tarjeta {
+    font-size: 1.8rem;
+}
+
+.titulo-tarjeta {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--texto-oscuro);
+}
+
+.check-icono {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    background-color: var(--vino);
+    color: var(--blanco);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: var(--transicion);
+    box-shadow: 0 2px 6px rgba(135, 76, 98, 0.3);
+}
+
+/* Estado seleccionado tarjeta */
+.tarjeta-seleccionable input:checked+.contenido-tarjeta {
+    background-color: var(--rosa-pastel);
+    border-color: var(--vino);
+    box-shadow: var(--sombra-tarjeta);
+    transform: translateY(-2px);
+}
+
+.tarjeta-seleccionable input:checked+.contenido-tarjeta .check-icono {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tarjeta-seleccionable:hover .contenido-tarjeta {
+    border-color: var(--rosa-empolvado);
+    transform: translateY(-2px);
+}
+
+/* Mini tarjetas */
+.cuadricula-tarjetas.mini {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 550px) {
+    .cuadricula-tarjetas.mini {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.contenido-tarjeta.mini {
+    padding: 12px 8px;
+}
+
+/* Bloques condicionales y Chips */
+.bloque-condicional {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--rosa-empolvado);
+}
+
+.bloque-condicional h3,
+.sub-bloque h4 {
+    font-size: 1.05rem;
+    color: var(--vino);
+    margin-bottom: 12px;
+}
+
+.grid-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip-seleccionable {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--crema);
+    border: 1.5px solid var(--gris-borde);
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: var(--transicion);
+    user-select: none;
+}
+
+.chip-seleccionable input {
+    accent-color: var(--vino);
+}
+
+.chip-seleccionable:hover {
+    border-color: var(--rosa-empolvado);
+    background-color: rgba(248, 221, 229, 0.3);
+}
+
+.chip-seleccionable:has(input:checked) {
+    background-color: var(--rosa-pastel);
+    border-color: var(--vino);
+    color: var(--vino);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(135, 76, 98, 0.12);
+}
+
+/* Grupo Botones Radio */
+.grupo-botones-radio {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.btn-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background-color: var(--crema);
+    border: 1.5px solid var(--gris-borde);
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transicion);
+}
+
+.btn-radio input {
+    accent-color: var(--vino);
+}
+
+.btn-radio:hover {
+    border-color: var(--rosa-empolvado);
+}
+
+.btn-radio:has(input:checked) {
+    background-color: var(--rosa-pastel);
+    border-color: var(--vino);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(135, 76, 98, 0.1);
+}
+
+.sub-bloque {
+    margin-top: 15px;
+    padding-left: 12px;
+    border-left: 2.5px solid var(--rosa-empolvado);
+}
+
+.mensaje-informativo {
+    background-color: var(--lavanda-suave);
+    padding: 16px;
+    border-radius: 14px;
+    color: var(--vino);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    border: 1px solid rgba(233, 225, 245, 0.8);
+}
+
+/* Círculos de Colores (Paso 4) */
+.grid-colores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+@media (min-width: 500px) {
+    .grid-colores {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.circulo-color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 65px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: var(--transicion);
+    position: relative;
+    font-size: 0.75rem;
+    font-weight: 600;
+    box-shadow: var(--sombra-tarjeta);
+    border: 2px solid transparent;
+}
+
+.circulo-color input {
+    position: absolute;
+    opacity: 0;
+}
+
+.circulo-color:hover {
+    transform: scale(1.06);
+}
+
+.circulo-color:has(input:checked) {
+    border-color: var(--vino);
+    transform: scale(1.09);
+    box-shadow: 0 6px 16px rgba(135, 76, 98, 0.25);
+}
+
+.input-adicional {
+    margin-top: 10px;
+}
+
+/* Resumen Paso 5 */
+.resumen-contenedor {
+    background-color: var(--crema);
+    border: 1.5px dashed var(--rosa-empolvado);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.resumen-contenedor h3 {
+    font-size: 1.1rem;
+    color: var(--vino);
+    margin-bottom: 10px;
+}
+
+.contenido-resumen p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    color: var(--texto-oscuro);
+}
+
+.frase-final {
+    text-align: center;
+    font-style: italic;
+    color: var(--vino);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* Botones Navegación Pasos */
+.navegacion-botones {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.btn.secundario {
+    background-color: transparent;
+    color: var(--vino);
+    border: 1.5px solid var(--rosa-empolvado);
+    width: auto;
+    padding: 14px 22px;
+    box-shadow: none;
+}
+
+.btn.secundario:hover {
+    background-color: var(--rosa-pastel);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(135, 76, 98, 0.08);
+}
+
+.navegacion-botones .btn:not(.secundario) {
+    flex: 1;
+}
+
+/* Pantalla Éxito */
+.tarjeta-exito {
+    text-align: center;
+    padding: 50px 30px;
+}
+
+.icono-exito {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    animation: rebote 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes rebote {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+.tarjeta-exito h2 {
+    color: var(--vino);
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.tarjeta-exito p {
+    color: var(--texto-oscuro);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.corazones-exito {
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+}
