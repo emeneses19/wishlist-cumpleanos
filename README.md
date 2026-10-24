@@ -36,7 +36,7 @@ Crea tu propia hoja de cálculo y configura Google Apps Script para almacenar la
 
 **4. Publica tu página**
 
-Utiliza un servicio de alojamiento web compatible con HTML, CSS y JavaScript, como GitHub Pages, para obtener un enlace público.
+Utiliza un servicio de alojamiento web compatible con HTML, CSS y JavaScript, como netlify, para obtener un enlace público.
 
 **5. Comparte tu wishlist**
 
